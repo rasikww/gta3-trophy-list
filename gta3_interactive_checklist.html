@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTA 3 Trophy Checklist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #1a1a1a;
+            color: #e0e0e0;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff6b35;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
+        }
+
+        .warnings {
+            background: #2d1b1b;
+            border: 2px solid #ff4444;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .warnings h2 {
+            color: #ff4444;
+            margin-bottom: 15px;
+        }
+
+        .warnings ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .warnings li {
+            padding: 5px 0;
+            border-bottom: 1px solid #444;
+        }
+
+        .warnings li:last-child {
+            border-bottom: none;
+        }
+
+        .island-section {
+            background: #2a2a2a;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid #444;
+        }
+
+        .island-title {
+            color: #4a9eff;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 0 0 5px rgba(74, 158, 255, 0.3);
+        }
+
+        .priority-section {
+            background: #333;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ff6b35;
+        }
+
+        .priority-title {
+            color: #ff6b35;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .task-group {
+            margin-bottom: 20px;
+        }
+
+        .task-group h4 {
+            color: #ffdd44;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #3a3a3a;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .task-item:hover {
+            background: #404040;
+        }
+
+        .task-item.completed {
+            background: #1a3a1a;
+            opacity: 0.7;
+        }
+
+        .task-checkbox {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: #4a9eff;
+        }
+
+        .task-content {
+            flex: 1;
+        }
+
+        .task-title {
+            font-weight: bold;
+            color: #e0e0e0;
+            margin-bottom: 5px;
+        }
+
+        .task-description {
+            color: #bbb;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .task-warning {
+            color: #ff8888;
+            font-size: 0.85em;
+            font-style: italic;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #333;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4a9eff, #ff6b35);
+            transition: width 0.3s ease;
+            border-radius: 10px;
+        }
+
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            color: #bbb;
+        }
+
+        .completion-section {
+            background: #2d2d2d;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 2px solid #4a9eff;
+        }
+
+        .completion-title {
+            color: #4a9eff;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .summary-card {
+            background: #333;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #4a9eff;
+        }
+
+        .summary-card h4 {
+            color: #4a9eff;
+            margin-bottom: 10px;
+        }
+
+        .reset-btn {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .reset-btn:hover {
+            background: #ff6666;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .island-title {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🏆 GTA 3 Interactive Trophy Checklist</h1>
+
+        <div class="warnings">
+            <h2>⚠️ CRITICAL WARNINGS</h2>
+            <ul>
+                <li><strong>NEVER USE CHEATS</strong> - They disable all trophies permanently</li>
+                <li><strong>SAVE FREQUENTLY</strong> - Game crashes often, especially during collectibles/vehicle
+                    missions</li>
+                <li><strong>5 MISSABLE TROPHIES</strong> - Follow this guide exactly to avoid missing them</li>
+                <li><strong>GLITCH WARNING</strong>: Do NOT leave "Kingdom Come" mission as your final task for 100% -
+                    it may glitch the trophy</li>
+            </ul>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-text" id="progressText">0% Complete (0/0 tasks)</div>
+
+        <div class="island-section">
+            <div class="island-title">🏴 PORTLAND ISLAND (First Island)</div>
+            <div class="priority-section">
+                <div class="priority-title">🎯 PRIORITY 1: Do These IMMEDIATELY (Before Any Story Missions)</div>
+
+                <div class="task-group">
+                    <h4>Paramedic Level 12 (Playing Doctor Trophy)</h4>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox" id="paramedic12">
+                        <div class="task-content">
+                            <div class="task-title">Complete Paramedic Level 12</div>
+                            <div class="task-description">Use ambulance, complete all 12 levels in one sitting</div>
+                            <div class="task-warning">MUST DO FIRST - This becomes nearly impossible with hostile gangs
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="task-group">
+                    <h4>Hidden Packages</h4>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox" id="packages20">
+                        <div class="task-content">
+                            <div class="task-title">Collect 20 Hidden Packages</div>
+                            <div class="task-description">Unlocks Uzi at safehouse (essential for other missions)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="task-group">
+                    <h4>Taxi Driver Mission</h4>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox" id="taxi100">
+                        <div class="task-content">
+                            <div class="task-title">Complete 100 Total Taxi Fares</div>
+                            <div class="task-description">Complete all 100 fares on Portland for safety</div>
+                            <div class="task-warning">CRITICAL: Much harder on later islands due to hostile gangs</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="priority-section">
+                <div class="priority-title">🎯 PRIORITY 2: Vehicle Missions (Before Gangs Turn Hostile)</div>
+
+                <div class="task-group">
+                    <h4>Firefighter Mission</h4>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox" id="firefighter20">
+                        <div class="task-content">
+                            <div class="task-title">Put out 20 fires on Portland</div>
+                            <div class="task-description">15 in single attempt for "Splish Splash" trophy</div>
+                            <div class="task-warning">MUST DO BEFORE: Triads become hostile after "The Pick-Up" mission
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="task-group">
+                    <h4>Vigilante Mission</h4>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox" id="vigilante20">
+                        <div class="task-content">
+                            <div class="task-title">Kill 20 criminals on Portland</div>
+                            <div class="task-description">15 in single attempt for "Going Rogue" trophy. Use Uzi for
+                                drive-by attacks</div>
+                            <div class="task-warning">MUST DO BEFORE: Mafia become hostile after "Sayonara Salvatore"
+                                mission</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="task-group">
+                    <h4>Rampages</h4>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox" id="rampages10">
+                        <div class="task-content">
+                            <div class="task-title">Complete 10 Rampages on Portland</div>
+                            <div class="task-description">Locations spread throughout Portland</div>
+                            <div class="task-warning">MUST DO BEFORE: Gangs become hostile</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="priority-section">
+                <div class="priority-title">🎯 PRIORITY 3: Missable Story Mission Trophies</div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="mike-lips">
+                    <div class="task-content">
+                        <div class="task-title">"Mike Lips Last Lunch" (Joey) - "Without a Scratch" Trophy</div>
+                        <div class="task-description">Deliver car without ANY damage</div>
+                        <div class="task-warning">If damaged, restart mission (don't repair at Pay'n'Spray)</div>
+                    </div>
+                </div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="farewell-chunky">
+                    <div class="task-content">
+                        <div class="task-title">"Farewell 'Chunky' Lee Chong" (Joey) - "Planned Ahead" Trophy</div>
+                        <div class="task-description">Must use car bomb to kill Chunky Lee Chong</div>
+                        <div class="task-warning">Grab his Perennial, take to 8-Ball for bomb, return it, trigger with
+                            detonator</div>
+                    </div>
+                </div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="fuzz-ball">
+                    <div class="task-content">
+                        <div class="task-title">"The Fuzz Ball" (Luigi) - "Got This Figured Out" Trophy</div>
+                        <div class="task-description">Must use coach to collect all 8 prostitutes</div>
+                        <div class="task-warning">Get coach from bus depot east of Joey's Garage first</div>
+                    </div>
+                </div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="triads-tribulations">
+                    <div class="task-content">
+                        <div class="task-title">"Triads and Tribulations" (Toni) - "Mob Boss" Trophy</div>
+                        <div class="task-description">Keep both Mafia members alive throughout mission</div>
+                        <div class="task-warning">Use Uzi for quick kills, avoid extended firefights</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="priority-section">
+                <div class="priority-title">🎯 PRIORITY 4: Story Mission Order (CRITICAL - AVOID MISSABLE MISSIONS)
+                </div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="luigi-missions">
+                    <div class="task-content">
+                        <div class="task-title">Luigi Goterelli - Complete ALL missions first</div>
+                        <div class="task-warning">Complete ALL missions for each character before moving to next</div>
+                    </div>
+                </div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="joey-missions">
+                    <div class="task-content">
+                        <div class="task-title">Joey Leone - Complete ALL missions second</div>
+                        <div class="task-warning">If you complete Salvatore's missions before Luigi's and Joey's, their
+                            missions become permanently missable!</div>
+                    </div>
+                </div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="toni-missions">
+                    <div class="task-content">
+                        <div class="task-title">Toni Cipriani - Complete ALL missions third</div>
+                    </div>
+                </div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="salvatore-missions">
+                    <div class="task-content">
+                        <div class="task-title">Salvatore Leone - Complete ALL missions last</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="priority-section">
+                <div class="priority-title">🎯 PRIORITY 5: Other Portland Tasks</div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="portland-packages">
+                    <div class="task-content">
+                        <div class="task-title">Collect remaining Hidden Packages (aim for 50+ total)</div>
+                        <div class="task-description">Every 10 packages = weapon unlock at safehouse</div>
+                    </div>
+                </div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="el-burro">
+                    <div class="task-content">
+                        <div class="task-title">Complete El Burro Pay Phone Missions</div>
+                        <div class="task-description">Including "Turismo" race under 180 seconds</div>
+                    </div>
+                </div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="marty-chonks">
+                    <div class="task-content">
+                        <div class="task-title">Complete Marty Chonks Pay Phone Missions</div>
+                    </div>
+                </div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="rc-toyz">
+                    <div class="task-content">
+                        <div class="task-title">Complete RC Toyz Missions</div>
+                        <div class="task-description">Need to destroy at least 1 car each</div>
+                    </div>
+                </div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="portland-jumps">
+                    <div class="task-content">
+                        <div class="task-title">Complete Portland's Unique Jumps</div>
+                        <div class="task-description">Part of 20 total needed</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="island-section">
+            <div class="island-title">🏙️ STAUNTON ISLAND (Second Island)</div>
+            <div class="priority-section">
+                <div class="priority-title">🎯 PRIORITY 1: Vehicle Missions (Before Gangs Turn Hostile)</div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="staunton-firefighter">
+                    <div class="task-content">
+                        <div class="task-title">Put out 20 fires on Staunton Island</div>
+                        <div class="task-warning">MUST DO BEFORE: Yardies become hostile after "Kingdom Come" pay phone
+                            mission</div>
+                    </div>
+                </div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="staunton-vigilante">
+                    <div class="task-content">
+                        <div class="task-title">Kill 20 criminals on Staunton Island</div>
+                        <div class="task-description">Use FBI Car (5-star wanted level) or continue with Police Car +
+                            Uzi</div>
+                    </div>
+                </div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="staunton-rampages">
+                    <div class="task-content">
+                        <div class="task-title">Complete all Staunton Island rampages</div>
+                        <div class="task-warning">Complete before gangs turn hostile</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="priority-section">
+                <div class="priority-title">🎯 PRIORITY 2: Story Mission Order (CRITICAL)</div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="kenji-missions">
+                    <div class="task-content">
+                        <div class="task-title">Kenji Kasen - Complete ALL missions first</div>
+                        <div class="task-warning">Complete ALL Kenji missions before "Waka-Gashira Wipeout" (Donald
+                            Love)</div>
+                    </div>
+                </div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="asuka-missions">
+                    <div class="task-content">
+                        <div class="task-title">Asuka Kasen - Complete ALL missions including "Two-Faced Tanner"</div>
+                        <div class="task-warning">Complete ALL Asuka missions before "Grand Theft Aero" (Donald Love)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="donald-missions">
+                    <div class="task-content">
+                        <div class="task-title">Donald Love - Complete his missions last</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="priority-section">
+                <div class="priority-title">🎯 PRIORITY 3: Other Staunton Tasks</div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="staunton-packages">
+                    <div class="task-content">
+                        <div class="task-title">Collect Staunton Island packages (aim for 50+ total for armor)</div>
+                    </div>
+                </div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="king-courtney">
+                    <div class="task-content">
+                        <div class="task-title">Complete King Courtney Pay Phone Missions</div>
+                    </div>
+                </div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="kingdom-come">
+                    <div class="task-content">
+                        <div class="task-title">Complete "Kingdom Come" mission</div>
+                        <div class="task-warning">SAVE FOR LAST - Do NOT make this your final 100% task!</div>
+                    </div>
+                </div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="staunton-jumps">
+                    <div class="task-content">
+                        <div class="task-title">Complete Staunton Island's unique jumps</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="island-section">
+            <div class="island-title">🏔️ SHORESIDE VALE (Third Island)</div>
+            <div class="priority-section">
+                <div class="priority-title">🎯 PRIORITY 1: Complete Everything Before Final Mission</div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="shoreside-firefighter">
+                    <div class="task-content">
+                        <div class="task-title">Firefighter: Complete final 20 fires (total 60)</div>
+                        <div class="task-description">Unlocks flamethrower and final police bribes</div>
+                    </div>
+                </div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="shoreside-vigilante">
+                    <div class="task-content">
+                        <div class="task-title">Vigilante: Complete final 20 criminals (total 60)</div>
+                    </div>
+                </div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="shoreside-rampages">
+                    <div class="task-content">
+                        <div class="task-title">Complete all Shoreside Vale rampages</div>
+                        <div class="task-warning">MUST DO BEFORE: "The Exchange" (final mission) - Cartel gets AK-47s
+                            after</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="priority-section">
+                <div class="priority-title">🎯 PRIORITY 2: Final Collections</div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="all-packages">
+                    <div class="task-content">
+                        <div class="task-title">Collect all remaining packages (100 total)</div>
+                        <div class="task-description">Each 10 packages = reward (weapons, armor, money)</div>
+                    </div>
+                </div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="all-jumps">
+                    <div class="task-content">
+                        <div class="task-title">Complete all 20 unique jumps across all islands</div>
+                    </div>
+                </div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="import-export">
+                    <div class="task-content">
+                        <div class="task-title">Complete all 3 import/export lists</div>
+                        <div class="task-description">Required for 100% completion</div>
+                    </div>
+                </div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="offroad-missions">
+                    <div class="task-content">
+                        <div class="task-title">Complete 6 Off-Road Missions (Shoreside Vale)</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="priority-section">
+                <div class="priority-title">🎯 PRIORITY 3: Final Story Missions</div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="catalina-missions">
+                    <div class="task-content">
+                        <div class="task-title">Catalina - Complete all her missions</div>
+                    </div>
+                </div>
+
+                <div class="task-item">
+                    <input type="checkbox" class="task-checkbox" id="the-exchange">
+                    <div class="task-content">
+                        <div class="task-title">"The Exchange" (Final mission)</div>
+                        <div class="task-warning">After this, Colombian Cartel gets AK-47s, making everything much
+                            harder!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="completion-section">
+            <div class="completion-title">🏆 Additional Trophy Requirements</div>
+
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <h4>Weapon/Combat Trophies</h4>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox" id="full-artillery">
+                        <div class="task-content">
+                            <div class="task-title">Full Artillery</div>
+                            <div class="task-description">Use all 12 weapons at least once</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox" id="come-out-play">
+                        <div class="task-content">
+                            <div class="task-title">Come Out to Play-y-y-y</div>
+                            <div class="task-description">Kill 25 gang members with melee weapons</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox" id="street-sweeper">
+                        <div class="task-content">
+                            <div class="task-title">Street Sweeper</div>
+                            <div class="task-description">Kill 100 gang members total</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <h4>Driving Trophies</h4>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox" id="by-mile">
+                        <div class="task-content">
+                            <div class="task-title">By a Mile</div>
+                            <div class="task-description">Complete "Turismo" race under 180 seconds</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox" id="wreckless-driving">
+                        <div class="task-content">
+                            <div class="task-title">Wreckless Driving</div>
+                            <div class="task-description">Perform perfect insane stunt (naturally happens during unique
+                                jumps)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <h4>Miscellaneous Trophies</h4>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox" id="liberty-minute">
+                        <div class="task-content">
+                            <div class="task-title">Liberty City Minute</div>
+                            <div class="task-description">Survive under 10 HP for 1 minute</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox" id="escape-artist">
+                        <div class="task-content">
+                            <div class="task-title">Escape Artist</div>
+                            <div class="task-description">Use 20 police bribes</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox" id="dirty-money">
+                        <div class="task-content">
+                            <div class="task-title">Dirty Money</div>
+                            <div class="task-description">Accumulate $1,000,000</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox" id="right-hand-man">
+                        <div class="task-content">
+                            <div class="task-title">Right-hand Man</div>
+                            <div class="task-description">Reach 2,500 criminal rating</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <button class="reset-btn" onclick="resetAllTasks()">Reset All Tasks</button>
+        </div>
+    </div>
+
+    <script>
+        // GTA 3 Interactive Checklist Script
+        document.addEventListener('DOMContentLoaded', function () {
+            // Load saved state from memory
+            // let savedState = {};
+            let savedState = JSON.parse(localStorage.getItem('gta3-checklist') || '{}');
+
+            // Get all checkboxes
+            const checkboxes = document.querySelectorAll('.task-checkbox');
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+
+            // Initialize the checklist
+            function initializeChecklist() {
+                checkboxes.forEach(checkbox => {
+                    // Load saved state if exists
+                    if (savedState[checkbox.id]) {
+                        checkbox.checked = savedState[checkbox.id];
+                        updateTaskAppearance(checkbox);
+                    }
+
+                    // Add event listener for state changes
+                    checkbox.addEventListener('change', function () {
+                        updateTaskAppearance(this);
+                        updateProgress();
+                        saveState();
+                    });
+                });
+
+                updateProgress();
+            }
+
+            // Update task appearance based on completion
+            function updateTaskAppearance(checkbox) {
+                const taskItem = checkbox.closest('.task-item');
+                if (checkbox.checked) {
+                    taskItem.classList.add('completed');
+                } else {
+                    taskItem.classList.remove('completed');
+                }
+            }
+
+            // Update progress bar and text
+            function updateProgress() {
+                const totalTasks = checkboxes.length;
+                const completedTasks = Array.from(checkboxes).filter(cb => cb.checked).length;
+                const percentage = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
+
+                progressFill.style.width = percentage + '%';
+                progressText.textContent = `${percentage}% Complete (${completedTasks}/${totalTasks} tasks)`;
+
+                // Change progress bar color based on completion
+                if (percentage === 100) {
+                    progressFill.style.background = 'linear-gradient(90deg, #4CAF50, #8BC34A)';
+                } else if (percentage >= 75) {
+                    progressFill.style.background = 'linear-gradient(90deg, #FF9800, #FFC107)';
+                } else {
+                    progressFill.style.background = 'linear-gradient(90deg, #4a9eff, #ff6b35)';
+                }
+            }
+
+            // Save current state to memory
+            // function saveState() {
+            //     checkboxes.forEach(checkbox => {
+            //         savedState[checkbox.id] = checkbox.checked;
+            //     });
+            // }
+            function saveState() {
+                checkboxes.forEach(checkbox => {
+                    savedState[checkbox.id] = checkbox.checked;
+                });
+                localStorage.setItem('gta3-checklist', JSON.stringify(savedState));
+            }
+
+            // Reset all tasks
+            window.resetAllTasks = function () {
+                if (confirm('Are you sure you want to reset all tasks? This will uncheck all completed items.')) {
+                    checkboxes.forEach(checkbox => {
+                        checkbox.checked = false;
+                        updateTaskAppearance(checkbox);
+                    });
+                    // savedState = {};
+                    savedState = {};
+                    localStorage.removeItem('gta3-checklist');
+                    updateProgress();
+
+                    // Show confirmation message
+                    const originalText = progressText.textContent;
+                    progressText.textContent = 'All tasks reset!';
+                    progressText.style.color = '#ff6b35';
+
+                    setTimeout(() => {
+                        progressText.textContent = originalText;
+                        progressText.style.color = '#bbb';
+                    }, 2000);
+                }
+            };
+
+            // Add keyboard shortcuts
+            document.addEventListener('keydown', function (e) {
+                // Ctrl+R to reset (prevent default browser refresh)
+                if (e.ctrlKey && e.key === 'r') {
+                    e.preventDefault();
+                    resetAllTasks();
+                }
+
+                // Ctrl+S to save (already auto-saves, but show confirmation)
+                if (e.ctrlKey && e.key === 's') {
+                    e.preventDefault();
+                    saveState();
+                    const originalText = progressText.textContent;
+                    progressText.textContent = 'Progress saved!';
+                    progressText.style.color = '#4CAF50';
+
+                    setTimeout(() => {
+                        progressText.textContent = originalText;
+                        progressText.style.color = '#bbb';
+                    }, 1500);
+                }
+            });
+
+            // Add completion celebration
+            function checkForCompletion() {
+                const totalTasks = checkboxes.length;
+                const completedTasks = Array.from(checkboxes).filter(cb => cb.checked).length;
+
+                if (completedTasks === totalTasks && totalTasks > 0) {
+                    // Celebration animation
+                    progressText.textContent = '🎉 CONGRATULATIONS! ALL TROPHIES UNLOCKED! 🎉';
+                    progressText.style.color = '#FFD700';
+                    progressText.style.fontSize = '1.2em';
+                    progressText.style.fontWeight = 'bold';
+                    progressText.style.textShadow = '0 0 10px rgba(255, 215, 0, 0.5)';
+
+                    // Add some visual flair
+                    setTimeout(() => {
+                        progressText.style.animation = 'pulse 2s infinite';
+                    }, 500);
+                }
+            }
+
+            // Enhanced progress tracking with detailed breakdown
+            function updateDetailedProgress() {
+                originalUpdateProgress();
+                checkForCompletion();
+            }
+
+            // Override the standard update function
+            const originalUpdateProgress = updateProgress;
+            updateProgress = updateDetailedProgress;
+            // Add CSS animation for celebration
+            const style = document.createElement('style');
+            style.textContent = `
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .task-item:hover .task-checkbox {
+            transform: scale(1.1);
+            transition: transform 0.2s ease;
+        }
+        
+        .task-checkbox:checked {
+            animation: checkmark 0.3s ease;
+        }
+        
+        @keyframes checkmark {
+            0% { transform: scale(0.8); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    `;
+            document.head.appendChild(style);
+
+            // Initialize everything
+            initializeChecklist();
+
+            // Auto-save every 30 seconds as backup
+            setInterval(saveState, 30000);
+        });
+    </script>
+</body>
